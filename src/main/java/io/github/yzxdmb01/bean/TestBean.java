@@ -2,7 +2,7 @@ package io.github.yzxdmb01.bean;
 
 /**
  * @Author: yinzhixing
- * @Description:
+ * @Description: 测试
  * @Date: 2017/11/28 16:46
  */
 public class TestBean {
