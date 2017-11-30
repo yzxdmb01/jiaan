@@ -34,10 +34,6 @@
     <servlet-mapping>
         <servlet-name>mvc-dispatcher</servlet-name>
         <!-- 默认匹配所有的静态资源,此处配置出错,会产生错误500 -->
-        <!--<url-pattern>/js/*</url-pattern>
-        <url-pattern>/css/*</url-pattern>
-        <url-pattern>/images/*</url-pattern>
-        <url-pattern>/fonts/*</url-pattern>-->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
@@ -104,6 +100,6 @@
     <display-name>Archetype Created Web Application</display-name>
     <error-page>
         <error-code>404</error-code>
-        <location>/static/views/404.html</location>
+        <location>/static/page/404.html</location>
     </error-page>
 </web-app>

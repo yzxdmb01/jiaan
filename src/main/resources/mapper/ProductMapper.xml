@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="io.github.yzxdmb01.mapper.ProductMapper">
-  <resultMap id="BaseResultMap" type="io.github.yzxdmb01.bean.Product">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type_id" jdbcType="BIGINT" property="typeId" />
-    <result column="picture" jdbcType="VARCHAR" property="picture" />
-    <result column="is_del" jdbcType="BIT" property="isDel" />
-    <result column="views" jdbcType="BIGINT" property="views" />
-    <result column="sort" jdbcType="INTEGER" property="sort" />
-    <result column="is_hot" jdbcType="BIT" property="isHot" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="io.github.yzxdmb01.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="io.github.yzxdmb01.bean.Product" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="BIGINT" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+    <result column="views" property="views" jdbcType="BIGINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="is_hot" property="isHot" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="io.github.yzxdmb01.bean.Product">
-    <result column="introduce" jdbcType="LONGVARCHAR" property="introduce" />
+  <resultMap id="ResultMapWithBLOBs" type="io.github.yzxdmb01.bean.Product" extends="BaseResultMap" >
+    <result column="introduce" property="introduce" jdbcType="LONGVARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     id, name, type_id, picture, is_del, views, sort, is_hot, create_time, update_time
   </sql>
-  <sql id="Blob_Column_List">
+  <sql id="Blob_Column_List" >
     introduce
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     ,
@@ -30,11 +30,11 @@
     from ja_product_detail
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from ja_product_detail
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="io.github.yzxdmb01.bean.Product">
+  <insert id="insert" parameterType="io.github.yzxdmb01.bean.Product" >
     insert into ja_product_detail (id, name, type_id, 
       picture, is_del, views, sort, 
       is_hot, create_time, update_time, 
@@ -44,116 +44,116 @@
       #{isHot,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{introduce,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="io.github.yzxdmb01.bean.Product">
+  <insert id="insertSelective" parameterType="io.github.yzxdmb01.bean.Product" >
     insert into ja_product_detail
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         id,
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         name,
       </if>
-      <if test="typeId != null">
+      <if test="typeId != null" >
         type_id,
       </if>
-      <if test="picture != null">
+      <if test="picture != null" >
         picture,
       </if>
-      <if test="isDel != null">
+      <if test="isDel != null" >
         is_del,
       </if>
-      <if test="views != null">
+      <if test="views != null" >
         views,
       </if>
-      <if test="sort != null">
+      <if test="sort != null" >
         sort,
       </if>
-      <if test="isHot != null">
+      <if test="isHot != null" >
         is_hot,
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time,
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         update_time,
       </if>
-      <if test="introduce != null">
+      <if test="introduce != null" >
         introduce,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="typeId != null">
+      <if test="typeId != null" >
         #{typeId,jdbcType=BIGINT},
       </if>
-      <if test="picture != null">
+      <if test="picture != null" >
         #{picture,jdbcType=VARCHAR},
       </if>
-      <if test="isDel != null">
+      <if test="isDel != null" >
         #{isDel,jdbcType=BIT},
       </if>
-      <if test="views != null">
+      <if test="views != null" >
         #{views,jdbcType=BIGINT},
       </if>
-      <if test="sort != null">
+      <if test="sort != null" >
         #{sort,jdbcType=INTEGER},
       </if>
-      <if test="isHot != null">
+      <if test="isHot != null" >
         #{isHot,jdbcType=BIT},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="introduce != null">
+      <if test="introduce != null" >
         #{introduce,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="io.github.yzxdmb01.bean.Product">
+  <update id="updateByPrimaryKeySelective" parameterType="io.github.yzxdmb01.bean.Product" >
     update ja_product_detail
-    <set>
-      <if test="name != null">
+    <set >
+      <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="typeId != null">
+      <if test="typeId != null" >
         type_id = #{typeId,jdbcType=BIGINT},
       </if>
-      <if test="picture != null">
+      <if test="picture != null" >
         picture = #{picture,jdbcType=VARCHAR},
       </if>
-      <if test="isDel != null">
+      <if test="isDel != null" >
         is_del = #{isDel,jdbcType=BIT},
       </if>
-      <if test="views != null">
+      <if test="views != null" >
         views = #{views,jdbcType=BIGINT},
       </if>
-      <if test="sort != null">
+      <if test="sort != null" >
         sort = #{sort,jdbcType=INTEGER},
       </if>
-      <if test="isHot != null">
+      <if test="isHot != null" >
         is_hot = #{isHot,jdbcType=BIT},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="introduce != null">
+      <if test="introduce != null" >
         introduce = #{introduce,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="io.github.yzxdmb01.bean.Product">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="io.github.yzxdmb01.bean.Product" >
     update ja_product_detail
     set name = #{name,jdbcType=VARCHAR},
       type_id = #{typeId,jdbcType=BIGINT},
@@ -167,7 +167,7 @@
       introduce = #{introduce,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="io.github.yzxdmb01.bean.Product">
+  <update id="updateByPrimaryKey" parameterType="io.github.yzxdmb01.bean.Product" >
     update ja_product_detail
     set name = #{name,jdbcType=VARCHAR},
       type_id = #{typeId,jdbcType=BIGINT},
@@ -179,184 +179,5 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
-  </update>
-  <resultMap id="BaseResultMap" type="io.github.yzxdmb01.bean.Product">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type_id" jdbcType="INTEGER" property="typeId" />
-    <result column="picture" jdbcType="VARCHAR" property="picture" />
-    <result column="is_del" jdbcType="BIT" property="isDel" />
-    <result column="views" jdbcType="BIGINT" property="views" />
-    <result column="sort" jdbcType="INTEGER" property="sort" />
-    <result column="is_hot" jdbcType="BIT" property="isHot" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="io.github.yzxdmb01.bean.Product">
-    <result column="introduce" jdbcType="LONGVARCHAR" property="introduce" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, name, type_id, picture, is_del, views, sort, is_hot, create_time, update_time
-  </sql>
-  <sql id="Blob_Column_List">
-    introduce
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from ja_product_detail
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from ja_product_detail
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="io.github.yzxdmb01.bean.Product">
-    insert into ja_product_detail (id, name, type_id, 
-      picture, is_del, views, sort, 
-      is_hot, create_time, update_time, 
-      introduce)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
-      #{picture,jdbcType=VARCHAR}, #{isDel,jdbcType=BIT}, #{views,jdbcType=BIGINT}, #{sort,jdbcType=INTEGER}, 
-      #{isHot,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{introduce,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="io.github.yzxdmb01.bean.Product">
-    insert into ja_product_detail
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="typeId != null">
-        type_id,
-      </if>
-      <if test="picture != null">
-        picture,
-      </if>
-      <if test="isDel != null">
-        is_del,
-      </if>
-      <if test="views != null">
-        views,
-      </if>
-      <if test="sort != null">
-        sort,
-      </if>
-      <if test="isHot != null">
-        is_hot,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="introduce != null">
-        introduce,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="typeId != null">
-        #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="picture != null">
-        #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="isDel != null">
-        #{isDel,jdbcType=BIT},
-      </if>
-      <if test="views != null">
-        #{views,jdbcType=BIGINT},
-      </if>
-      <if test="sort != null">
-        #{sort,jdbcType=INTEGER},
-      </if>
-      <if test="isHot != null">
-        #{isHot,jdbcType=BIT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="introduce != null">
-        #{introduce,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="io.github.yzxdmb01.bean.Product">
-    update ja_product_detail
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="typeId != null">
-        type_id = #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="picture != null">
-        picture = #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="isDel != null">
-        is_del = #{isDel,jdbcType=BIT},
-      </if>
-      <if test="views != null">
-        views = #{views,jdbcType=BIGINT},
-      </if>
-      <if test="sort != null">
-        sort = #{sort,jdbcType=INTEGER},
-      </if>
-      <if test="isHot != null">
-        is_hot = #{isHot,jdbcType=BIT},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="introduce != null">
-        introduce = #{introduce,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="io.github.yzxdmb01.bean.Product">
-    update ja_product_detail
-    set name = #{name,jdbcType=VARCHAR},
-      type_id = #{typeId,jdbcType=INTEGER},
-      picture = #{picture,jdbcType=VARCHAR},
-      is_del = #{isDel,jdbcType=BIT},
-      views = #{views,jdbcType=BIGINT},
-      sort = #{sort,jdbcType=INTEGER},
-      is_hot = #{isHot,jdbcType=BIT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      introduce = #{introduce,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="io.github.yzxdmb01.bean.Product">
-    update ja_product_detail
-    set name = #{name,jdbcType=VARCHAR},
-      type_id = #{typeId,jdbcType=INTEGER},
-      picture = #{picture,jdbcType=VARCHAR},
-      is_del = #{isDel,jdbcType=BIT},
-      views = #{views,jdbcType=BIGINT},
-      sort = #{sort,jdbcType=INTEGER},
-      is_hot = #{isHot,jdbcType=BIT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
