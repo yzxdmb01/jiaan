@@ -27,7 +27,11 @@ public class AdminController {
 
 	@RequestMapping
 	public String toIndex() {
-		L.i("访问首页");
+		return "admin/index";
+	}
+
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public String toIndex2() {
 		return "admin/index";
 	}
 
@@ -46,8 +50,9 @@ public class AdminController {
 	public Object login(String username, String password, HttpServletRequest request) {
 		Map<String, Object> map = adminUserService.login(username, password);
 		if ((int) map.get(Constant.CODE) == Constant.SUCCESS) {
+			map.put("url", "/admin/index");
 			HttpSession session = request.getSession();
-			session.setAttribute("username", ((AdminUser) map.get("user")).getUsername());
+			session.setAttribute("user", ((AdminUser) map.get("user")).getUsername());
 		}
 		return map;
 	}

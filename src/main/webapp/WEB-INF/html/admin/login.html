@@ -28,28 +28,57 @@
     <legend>登录</legend>
 </fieldset>
 <div class="login_div">
-    <form class="layui-form" action="">
+    <form class="layui-form" action="" id="login_form">
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
-                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入用户名"
-                       class="layui-input">
+                <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名"
+                       value="root" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">密码</label>
             <div class="layui-input-block">
                 <input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off"
-                       class="layui-input">
+                       value="root" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn  layui-btn-lg" lay-submit="" style="width: 100%;top: 10px">登录</button>
+                <button class="layui-btn  layui-btn-lg" lay-submit="" style="width: 100%;top: 10px" type="button"
+                        onclick="login()">登录
+                </button>
             </div>
         </div>
     </form>
 </div>
 <script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script>
+
+    function login() {
+        var formStr = $("#login_form").serialize();
+        var url = "/admin/login";
+        $.ajax({
+            url: url,
+            type: "post",
+            data: formStr,
+            dataType: "json",
+            success: function (data) {
+                var code = data.code;
+                if(code && code == 200){
+                    window.location.href = data.url;
+                }
+                console.debug("success:", data);
+            },
+            error: function (e) {
+                console.debug("error:", e);
+            }
+        });
+
+        console.debug("form:", formStr);
+    }
+
+</script>
 </body>
 </html>
